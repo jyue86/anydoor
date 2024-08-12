@@ -7,7 +7,7 @@ from pytorch_lightning import seed_everything
 from cldm.model import create_model, load_state_dict
 from cldm.ddim_hacked import DDIMSampler
 from cldm.hack import disable_verbosity, enable_sliced_attention
-from datasets.data_utils import * 
+from anydoor_datasets.data_utils import * 
 cv2.setNumThreads(0)
 cv2.ocl.setUseOpenCL(False)
 import albumentations as A
@@ -21,11 +21,11 @@ if save_memory:
     enable_sliced_attention()
 
 
-config = OmegaConf.load('./configs/inference.yaml')
+config = OmegaConf.load('AnyDoor/configs/inference.yaml')
 model_ckpt =  config.pretrained_model
 model_config = config.config_file
 
-model = create_model(model_config ).cpu()
+model = create_model(model_config).cpu()
 model.load_state_dict(load_state_dict(model_ckpt, location='cuda'))
 model = model.cuda()
 ddim_sampler = DDIMSampler(model)
