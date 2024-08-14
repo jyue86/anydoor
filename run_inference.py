@@ -220,12 +220,13 @@ def inference_single_image(ref_image, ref_mask, tar_image, tar_mask, guidance_sc
 
 
 if __name__ == '__main__': 
-    '''
+    # '''
     # ==== Example for inferring a single image ===
-    reference_image_path = './examples/TestDreamBooth/FG/01.png'
-    bg_image_path = './examples/TestDreamBooth/BG/000000309203_GT.png'
-    bg_mask_path = './examples/TestDreamBooth/BG/000000309203_mask.png'
-    save_path = './examples/TestDreamBooth/GEN/gen_res.png'
+    reference_image_path = 'mnt/page-output/coca-cola.jpg'
+    uuid = "cecb9e2b-3abb-4ce6-9632-b47b0d8acc14"
+    bg_image_path = 'mnt/raw/compositing-dataset-mini/images/' + uuid + ".jpg"
+    bg_mask_path = 'mnt/raw/compositing-dataset-mini/product-masks/' + uuid + ".png"
+    save_path = 'mnt/page-output/test-anydoor.jpg'
 
     # reference image + reference mask
     # You could use the demo of SAM to extract RGB-A image with masks
@@ -251,8 +252,8 @@ if __name__ == '__main__':
     vis_image = cv2.hconcat([ref_image, back_image, gen_image])
     
     cv2.imwrite(save_path, vis_image [:,:,::-1])
+    # '''
     '''
-    #'''
     # ==== Example for inferring VITON-HD Test dataset ===
 
     from omegaconf import OmegaConf
@@ -288,7 +289,7 @@ if __name__ == '__main__':
 
         vis_image = cv2.hconcat([ref_image, gt_image, gen_image])
         cv2.imwrite(gen_path, vis_image[:,:,::-1])
-    #'''
+    '''
 
     
 
