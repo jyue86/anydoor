@@ -21,7 +21,7 @@ if save_memory:
     enable_sliced_attention()
 
 
-config = OmegaConf.load('AnyDoor/configs/inference.yaml')
+config = OmegaConf.load('anydoor/configs/inference.yaml')
 model_ckpt =  config.pretrained_model
 model_config = config.config_file
 
